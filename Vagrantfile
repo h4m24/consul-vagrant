@@ -63,25 +63,25 @@ Vagrant.configure("2") do |config|
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
   config.vm.define "consul-001" do |web|
-    config.vm.hostname = "consul-001.vagrant"
-    config.hostsupdater.aliases = ["consul-001.vagrant"]
-    config.vm.network "private_network", ip: "192.168.30.11"
-    config.vm.provision "shell", path: "./install_consul.server.sh"
+    web.vm.hostname = "consul-001.vagrant"
+    web.hostsupdater.aliases = ["consul-001.vagrant"]
+    web.vm.network "private_network", ip: "192.168.30.11"
+    # config.vm.provision "shell", path: "./install_consul.server.sh"
     # config.vm.network "forwarded_port", guest: 80, host: 8080
   end
 
   config.vm.define "consul-002" do |web|
-    config.vm.hostname = "consul-002.vagrant"
-    config.hostsupdater.aliases = ["consul-002.vagrant"]
-    config.vm.network "private_network", ip: "192.168.30.22"
-    config.vm.provision "shell", path: "./install_consul.server.sh"
+    web.vm.hostname = "consul-002.vagrant"
+    web.hostsupdater.aliases = ["consul-002.vagrant"]
+    web.vm.network "private_network", ip: "192.168.30.20"
+    # config.vm.provision "shell", path: "./install_consul.server.sh"
   end
 
   config.vm.define "consul-003" do |web|
-    config.vm.hostname = "consul-003.vagrant"
-    config.hostsupdater.aliases = ["consul-003.vagrant"]
-    config.vm.network "private_network", ip: "192.168.30.30"
-    config.vm.provision "shell", path: "./install_consul.server.sh"
+    web.vm.hostname = "consul-003.vagrant"
+    web.hostsupdater.aliases = ["consul-003.vagrant"]
+    web.vm.network "private_network", ip: "192.168.30.30"
+    # config.vm.provision "shell", path: "./install_consul.server.sh"
   end
   # config.vm.define "consul-004" do |web|
   #   config.vm.hostname = "consul-004.vagrant"
@@ -109,6 +109,7 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+  config.vm.provision "shell", path: "./install_consul.server.sh"
   # config.vm.provision "shell", inline: <<-SHELL
   #   apt-get update
   #   apt-get install -y apache2
